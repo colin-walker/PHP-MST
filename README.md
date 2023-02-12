@@ -47,9 +47,15 @@ The refresh time is stored in admin/refresh.txt and item count in admin/items.tx
 
 Add feeds as above to see updates from other people. The timeline is built on the fly from your own RSS feed and those you are subscribed to.
 
-The posting form will be visible when logged in allowing you to post new statuses. These are then added to posts.csv (it is created on first post) and an RSS feed is created/updated in feed.xml. New posts will immediately be shown in the timeline alng with those from other feeds you are subscribed to.
+The posting form will be visible when logged in allowing you to post new statuses. These are then added to posts.csv (it is created on first post) and an RSS feed is created/updated in feed.xml. New posts will immediately be shown in the timeline alng with those from other feeds you are subscribed to. When a post is create it pings the rssCloud server so that subscribers can be notified of an update.
 
 When a subscribed feed notifies of an update a new file notify/count.txt is created. Using HTMX, count.php is reloaded at the refresh interval to check for the existence of count.txt – if it exists (or holds a value greater than zero) it will show a div prompting to load new items. Reloading the page will delete count.txt.
+
+## Cron jobs
+
+The rssCloud server being used (Andrew Shell's at http://rpc.rsscloud.io/) requires you to resubscribe to feeds for notifications every 24 hours (the subscription is deleted after 25 hours.)
+
+You will, therefore, need to create a cron job to load pleaseNotify.php once a day to ensure notifications are received.
 
 ## To do:
 
