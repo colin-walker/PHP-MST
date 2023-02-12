@@ -75,7 +75,8 @@ require_once('../config.php');
 								<p>
 								<h3>To do:</h3>
 								<ul>
-									<li>pagination or limit the number of items shown</li>
+									<li>pagination or limit the number of items shown (discussion has suggested 100)</li>
+									<li>potential for temporary storage of items (up to the above limit) so that they can be retrieved in the background and the timeline built from this storage rather than on the fly</li>
 									<li>think about how to create 'reply' functionality</li>
 								</ul>
 								</p>
