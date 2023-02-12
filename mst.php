@@ -180,12 +180,6 @@ try {
 		} else {
 			$itemContent = $item->description;
 		}
-		if (substr($itemContent, 0, 3) != '<p>') {
-		$itemContent = '<p>' . $itemContent;
-		}
-		if (substr($itemContent, -4) != '</p>') {
-			$itemContent = $itemContent . '<br></p>';
-		}
 		
 		$Parsedown = new Parsedown();
 		$itemContent = $Parsedown->text($itemContent);
