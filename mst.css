@@ -1,0 +1,102 @@
+main {
+	padding-bottom: 50px;	
+}
+
+nav.mst {
+	margin: 30px 0;
+	border-top: rgba(225,225,225,0.95);
+	border-bottom: rgba(225,225,225,0.95);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+	background: rgba(225,225,225,0.95);
+	width: 100%;
+}
+
+nav.mst ul {
+	list-style-type: none;
+	text-align: center;
+	margin: 0 auto;
+	padding: 0;
+}
+
+nav.mst ul li {
+	display: inline-block;
+	margin: 7px 15px;
+}
+
+nav.mst ul li a {
+	font-weight: bold;
+	font-size: 1.1em;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #222222;
+}
+
+nav.mst ul li a:hover {
+	color: #999999;	
+}
+
+.photo-box.page {
+    margin-top: 9px;
+}
+
+.adminwrapper.mst {
+	width: 85%;
+}
+
+.dict_del {
+	margin-top: 1px;
+}
+
+.rDiv {
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 30px;
+	border-radius: 5px;
+	background-color: #dddddd;
+	text-transform: uppercase;
+	font-size: 0.8em;
+}
+
+.rLink {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+
+.login {
+    position: relative;
+    top: -5px;
+}
+
+.addfeed {
+	margin-bottom: 10px;
+	width: 95%;
+}
+
+@media screen and (max-width: 767px) {
+	.box-content {
+		top: 0px !important;
+	}
+	
+	.photo-box.page {
+		margin-top: 10px;
+	}
+
+	.adminwrapper.mst {
+		width: 85%;
+	}
+	
+	body {
+		max-width: 100vw;
+	}
+	
+	.dict_del {
+		margin-top: 1px;
+	}
+
+	.addfeed {
+		width: 93%;
+	}
+}

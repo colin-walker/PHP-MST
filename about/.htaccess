@@ -1,0 +1,19 @@
+DirectoryIndex about.php
+
+<FilesMatch ".(jpg|jpeg|png|webp|js)$">
+    Header set Cache-Control "max-age=2629746, public"
+</FilesMatch>
+
+<FilesMatch ".(css)$">
+    Header set Cache-Control "max-age=100, public"
+</FilesMatch>
+
+# BEGIN Redirection
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+ErrorDocument 404 /404.php
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301]
+</IfModule>
+# END Redirection
