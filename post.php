@@ -93,7 +93,7 @@ if ( isset($_POST['dopost']) && hash_equals($_POST['randcheck'], ''.$_SESSION['r
 			fwrite($xmlfile, '</rss>'.PHP_EOL);
 			fclose($xmlfile);
 			
-			$feedurl = BASE_URL.'/feed.xml';
+			$feedurl = BASE_URL.'feed.xml';
 			doPing($feedurl);
 	}
 }
