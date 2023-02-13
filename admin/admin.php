@@ -22,6 +22,7 @@ require_once('pleaseNotify.php');
 $target_dir = dirname(__FILE__).'/';
 $session = dirname(__DIR__).'/session.php';
 $feeds = $target_dir.'feeds.csv';
+$avatar = AVATAR;
 
 if (isset($_POST['logout'])) {
 	unlink($session);
@@ -136,6 +137,20 @@ if (isset($_POST['items'])) {
     file_put_contents('items.txt', $items);
 }
 
+// set avatar
+
+if (isset($_POST['avatar'])) {
+	foreach(file('../config.php') as $line) {
+		$config[] = $line;
+	}
+	$config[10] = 'define("AVATAR", "'.$_POST['avatar'].'");'."\n";
+	file_put_contents('../config.php', '');
+	foreach($config as $line) {
+		file_put_contents('../config.php', $line, FILE_APPEND);
+	}
+	$avatar = $_POST['avatar'];
+}
+
 $refresh = file_get_contents('refresh.txt');
 $items = file_get_contents('items.txt');
 
@@ -145,7 +160,7 @@ $items = file_get_contents('items.txt');
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Feeds</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../mst.css">
     
@@ -164,7 +179,7 @@ $items = file_get_contents('items.txt');
             <div class="site-branding">
                 <h1 class="site-title">
                     <a href="<?php echo BASE_URL; ?>" rel="home">
-                        <span class="p-name">Feeds</span>
+                        <span class="p-name">Admin</span>
                     </a>
                 </h1>
             </div>
@@ -187,7 +202,10 @@ $items = file_get_contents('items.txt');
 		    <form method='post'>
 		        <input type='hidden' name='change'>
 		        <span style="float: left; min-width: 40%; padding-top: 9px;">Refresh interval: </span><input class='form-control' name='refresh' type='number' style='margin-bottom: 0px; width: 40px;' autocomplete="off" value="<?php echo $refresh; ?>" />
-		        <span style="float: left; min-width: 40%; padding-top: 9px;">Items: </span><input class='form-control' name='items' type='number' min='10' max='50' style='margin-bottom: 0px; width: 40px; float: left;' autocomplete="off" value="<?php echo $items; ?>" />
+		        <span style="float: left; min-width: 40%; padding-top: 9px;">Items: </span><input class='form-control' name='items' type='number' min='10' max='50' style='margin-bottom: 9px; width: 40px; float: left;' autocomplete="off" value="<?php echo $items; ?>" />
+		        <div style="clear: both;"></div>
+		        <label for="avatar" style="padding-top: 9px;">Avatar:</label>
+		        <input class='form-control addfeed' name='avatar' type='text' style="margin-top: 5px;" value='<?php echo $avatar ?>' autocomplete="off">
 		        <input type='submit' value='Update' style='margin-top: 7px; float: right;'><br/>
 		    </form>
 		    <div style="clear: both;"></div>
