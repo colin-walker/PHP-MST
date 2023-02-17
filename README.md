@@ -2,6 +2,8 @@
 
 An initial PHP implementation of '**My Status Tool**'.
 
+See the [changelog](https://github.com/colin-walker/PHP-MST/blob/main/changelog.md) for updates.
+
 ## WHAT IS PHP-MST?
 
 PHP-MST is a simple PHP implementation of [My Status Tool](https://github.com/andysylvester/MyStatusToolDemo) by Andy Sylvester.
