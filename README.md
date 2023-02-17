@@ -53,9 +53,9 @@ There is also a link to 'clean' the remote items files (items.csv) to ensure it 
 
 Add feeds as above to see updates from other people. The timeline is built on the fly from your own RSS feed and those you are subscribed to.
 
-The posting form will be visible when logged in allowing you to post new statuses. These are then added to posts.csv (it is created on first post) and an RSS feed is created/updated in feed.xml. New posts will immediately be shown in the timeline alng with those from other feeds you are subscribed to. When a post is create it pings the rssCloud server so that subscribers can be notified of an update.
+The posting form will be visible when logged in allowing you to post new statuses. These are then added to posts.csv (it is created on first post) and an RSS feed is created/updated in feed.xml. New posts will immediately be shown in the timeline alng with those from other feeds you are subscribed to. When a post is created it pings the rssCloud server so that subscribers can be notified of an update.
 
-When a subscribed feed notifies of an update a new file notify/count.txt is created. Using HTMX, count.php is reloaded at the refresh interval to check for the existence of count.txt – if it exists (or holds a value greater than zero) it will show a div prompting to load new items. Reloading the page will delete count.txt.
+When a subscribed feed notifies of an update a new file notify/count.txt is created. Using HTMX, count.php is reloaded at the refresh interval in /admin to check for the existence of count.txt – if it exists (or holds a value greater than zero) it will show a div prompting to load new items. Reloading the page will delete count.txt.
 
 ## Cron jobs
 
