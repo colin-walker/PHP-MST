@@ -22,7 +22,7 @@ if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
 			
 	fwrite($xmlfile, '<?xml version="1.0" standalone="yes" ?>'.PHP_EOL);
 	fwrite($xmlfile, '<?xml-stylesheet href="'.BASE_URL.'feed.xsl" type="text/xsl" ?>'.PHP_EOL);
-	fwrite($xmlfile, '<rss version="2.0">'.PHP_EOL);
+	fwrite($xmlfile, '<rss xmlns:source="http://source.scripting.com/" version="2.0">'.PHP_EOL);
 	fwrite($xmlfile, '<channel>'.PHP_EOL);
 	fwrite($xmlfile, '<title>'.NAME.'</title>'.PHP_EOL);
 	fwrite($xmlfile, '<description>Statuses from ' . NAME . ' - PHP-MST</description>'.PHP_EOL);
@@ -58,10 +58,16 @@ if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
 			$post[1] = substr($post[1],$length);
 			fwrite($xmlfile, '<title><![CDATA[' . $post_title . ']]></title>'.PHP_EOL);
 		}
-		
+		$md_content = $post[1];
+  		$md_content = str_replace('&', '&amp;', $md_content);
+  		$md_content = str_replace('<', '&lt;', $md_content);
+  		$md_content = str_replace('>', '&gt;', $md_content);
+  		$md_content = str_replace("\r\n", '&#10;', $md_content);
+  		
 		$Parsedown = new Parsedown();
 		$content = $Parsedown->text($post[1]);
 		fwrite($xmlfile, '<description><![CDATA[' . $content . ']]></description>'.PHP_EOL);
+		fwrite($xmlfile, '<source:markdown>' . $md_content . '</source:markdown>' . PHP_EOL);
 		fwrite($xmlfile, '</item>'.PHP_EOL);
 	}
 	
