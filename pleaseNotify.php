@@ -5,7 +5,8 @@ session_start();
 
 define('APP_RAN', '');
 
-// Include config file
+// Include files
+
 require_once('config.php');
 require_once('Feeds.php');
 

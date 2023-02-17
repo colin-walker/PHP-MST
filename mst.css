@@ -43,10 +43,28 @@ nav.mst ul li a:hover {
 
 .adminwrapper.mst {
 	width: 85%;
+	margin: 20px auto 10px;
+	color: #444;
+}
+
+.adminwrapper.mst span {
+	float: left;
+	min-width: 40%;
+	padding-top: 9px;
+}
+
+.titleSpan.mst {
+	position: relative;
+	top: -5px;
+	color: #444;
 }
 
 .dict_del {
 	margin-top: 1px;
+}
+
+.contentDiv h1 {
+	font-size: 1.2em;
 }
 
 .rDiv {
@@ -55,14 +73,15 @@ nav.mst ul li a:hover {
 	margin-bottom: 30px;
 	border-radius: 5px;
 	background-color: #dddddd;
-	text-transform: uppercase;
-	font-size: 0.8em;
 }
 
 .rLink {
 	text-decoration: none;
 	color: black;
 	cursor: pointer;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 0.8em;
 }
 
 .login {
@@ -98,5 +117,9 @@ nav.mst ul li a:hover {
 
 	.addfeed {
 		width: 93%;
+	}
+	
+	.mstedit {
+	    width: 93%;
 	}
 }

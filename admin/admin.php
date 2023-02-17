@@ -14,7 +14,8 @@ session_start();
 
 define('APP_RAN', '');
 
-// Include config file
+// Include files
+
 require_once('../config.php');
 require_once('../Feeds.php');
 require_once('pleaseNotify.php');
@@ -37,7 +38,7 @@ if (!isset($_SESSION['mstauth']) || $_SESSION['mstauth'] != $auth) {
 // add feed
 
 if (isset($_POST['add'])) {
-    $URL = $_POST['newfeed'];
+    $url = $_POST['newfeed'];
     $match = false;
     $rows = array();
     
@@ -49,7 +50,7 @@ if (isset($_POST['add'])) {
 		
 		foreach ($rows as $row) {
 			$link = $row[0];
-			if ($link == $URL) {
+			if ($link == $url) {
 				$match = true;
 			}	
 		}
@@ -67,20 +68,14 @@ if (isset($_POST['add'])) {
 			CURLOPT_FOLLOWLOCATION => TRUE,
 		);
 		
-		$port = parse_url($URL, PHP_URL_PORT);
-
-		$orig = $URL;
+		$port = parse_url($url, PHP_URL_PORT);
 		
 		if (!empty($port)) {
 			array_push($options,'CURLOPT_PORT => ' .$port);
-			$scheme = parse_url($orig, PHP_URL_SCHEME);
-			$host = parse_url($orig, PHP_URL_HOST);
-			$path = parse_url($orig, PHP_URL_PATH);
-			$URL = $scheme.'://'.$host.$path;
 		}
 		
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $orig);
+		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt_array($curl, $options);
 		$result = curl_exec($curl);
 		curl_close($curl);
@@ -94,13 +89,13 @@ if (isset($_POST['add'])) {
 			$port = (string)$rss->{'cloud'}['port'];
 			$path = (string)$rss->{'cloud'}['path'];
 			$protocol = (string)$rss->{'cloud'}['protocol'];
-    		$result = pleaseNotify($orig, $domain, $port, $path);			
+    		$result = pleaseNotify($url, $domain, $port, $path);			
 		} else {
 			$domain = $port = $path = $protocol = '';
 		}
     	
     	$f = fopen($feeds, 'a');
-    	fputcsv($f, array($orig, $domain, $port, $path, $protocol));
+    	fputcsv($f, array($url, $domain, $port, $path, $protocol));
     	fclose($f);
     }
 }
@@ -128,6 +123,7 @@ if (isset($_POST['deletefeed'])) {
 if (isset($_POST['change'])) {
     $interval = $_POST['refresh'];
     file_put_contents('refresh.txt', $interval);
+    $update = true;
 }
 
 // set items
@@ -135,6 +131,7 @@ if (isset($_POST['change'])) {
 if (isset($_POST['items'])) {
     $items = $_POST['items'];
     file_put_contents('items.txt', $items);
+    $update = true;
 }
 
 // set avatar
@@ -149,6 +146,7 @@ if (isset($_POST['avatar'])) {
 		file_put_contents('../config.php', $line, FILE_APPEND);
 	}
 	$avatar = $_POST['avatar'];
+    $update = true;
 }
 
 $refresh = file_get_contents('refresh.txt');
@@ -189,8 +187,8 @@ $items = file_get_contents('items.txt');
             <img src="<?php echo '../images/cancel.png'; ?>" />
         </a>
         
-        <div class="adminwrapper mst" style="margin: 20px auto 10px; color: #444;">
-		    <h2 class="titleSpan" style="position: relative; top: -5px; color: #444;">Add feed</h2>
+        <div class="adminwrapper mst">
+		    <h2 class="titleSpan mst">Add feed</h2>
 		     <form method='post'>
 		        <input type='hidden' name='add'>
 		        <input class='form-control addfeed' name='newfeed' type='text' placeholder='Add feed' autocomplete="off">
@@ -198,22 +196,42 @@ $items = file_get_contents('items.txt');
 		    </form>
 		</div>
 		
-		<div class="adminwrapper mst" style="margin: 20px auto 10px; color: #444;">
+		<div class="adminwrapper mst">
 		    <form method='post'>
 		        <input type='hidden' name='change'>
-		        <span style="float: left; min-width: 40%; padding-top: 9px;">Refresh interval: </span><input class='form-control' name='refresh' type='number' style='margin-bottom: 0px; width: 40px;' autocomplete="off" value="<?php echo $refresh; ?>" />
-		        <span style="float: left; min-width: 40%; padding-top: 9px;">Items: </span><input class='form-control' name='items' type='number' min='10' max='50' style='margin-bottom: 9px; width: 40px; float: left;' autocomplete="off" value="<?php echo $items; ?>" />
-		        <div style="clear: both;"></div>
+		        <span>Refresh interval: </span><input class='form-control' name='refresh' type='number' style='margin-bottom: 0px; width: 40px;' autocomplete="off" value="<?php echo $refresh; ?>" />
+		        <span>Items: </span><input class='form-control' name='items' type='number' min='10' max='50' style='margin-bottom: 9px; width: 40px; float: left;' autocomplete="off" value="<?php echo $items; ?>" />
+		        <div class="clear"></div>
 		        <label for="avatar" style="padding-top: 9px;">Avatar:</label>
 		        <input class='form-control addfeed' name='avatar' type='text' style="margin-top: 5px;" value='<?php echo $avatar ?>' autocomplete="off">
+		        <a href="clean.php" class="admin" title="Ensures that the item storage has a maximum of 100 entries">Clean items</a>
 		        <input type='submit' value='Update' style='margin-top: 7px; float: right;'><br/>
+		        
 		    </form>
-		    <div style="clear: both;"></div>
+		    <div class="clear"></div>
 		</div>
 		
-		<div class="adminwrapper mst" style="margin: 20px auto 10px; color: #444;">
+		<div class="adminwrapper mst">
 
 <?php
+
+	if (isset($update) && $update) {
+?>
+		<dialog id="update" style="border-radius: 8px; background-color: #ccc;">
+		<p style="margin: 20px auto;">
+		Update complete 👍
+		</p>
+		<button style="outline: none; float: right; border-radius: 5px; border: 1px solid #222222;" onclick="document.getElementById('update').close();">close</button>
+		</dialog>
+		
+		<script>
+			document.getElementById("update").showModal();
+		</script>
+<?php
+	}
+
+
+
 	if (file_exists($feeds)) {
 	$rows = array();
 	$f = fopen($feeds, 'r');

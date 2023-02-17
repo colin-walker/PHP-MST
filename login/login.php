@@ -13,7 +13,6 @@ $session = $target_dir.'session.php';
 
 file_exists($session) ? $auth = file_get_contents($session) : $auth = 0; 
 
-
 if (isset($_SESSION['mstauth']) && isset($auth) && ($_SESSION['mstauth'] == $auth)) {
     header("location: ".BASE_URL);
     exit;
@@ -29,8 +28,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $_SESSION['mstauth'] = $hash;
-        
-        //$file = $target_dir.'session.php';
 
 		if (file_exists($session)) {
 		  unlink( $session );
@@ -57,14 +54,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Login</title>
 	<link rel="stylesheet" href="../style.css" type="text/css" media="all">
-    <style type="text/css">
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
 </head>
 <body class="login">
         <?php
             if (isset($password_err)) {
-                echo '<div class="wrapper" style="position: relative; top: 150px; text-align: center; color: #222;">' . $password_err . '</div>';
+                echo '<div class="errWrapper">' . $password_err . '</div>';
             }
         ?>
     <div class="wrapper">
@@ -84,16 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </form>
     </div>
     
-    	<a href="<?php echo BASE_URL; ?>"><img  style="
-            position: absolute;
-            top: 22px;
-            right: 22px;
-            font-size: 23px;
-            cursor: pointer;
-            color: #333;
-            z-index: 100;
-            width: 23px;
-            display: block;" src="../images/cancel.png" />
+    	<a class="cancel" href="<?php echo BASE_URL; ?>"><img style="" src="../images/cancel.png" />
     </a>
     
 </body>

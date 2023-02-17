@@ -40,8 +40,6 @@ function pleaseNotify($feed, $domain, $port, $path) {
     } finally {
         curl_close($ch);
     }
-    
-    //return $result;
 }
 
 ?>

@@ -18,7 +18,7 @@ require_once('../config.php');
 	<link rel="stylesheet" href="../mst.css" type="text/css" media="all">
 </head>
 
-<body style="font-family: sans-serif; font-size: 16px;">
+<body>
 	<header id="masthead" class="site-header">
     	<div class="site-branding">
         	<h1 class="site-title">
@@ -30,7 +30,7 @@ require_once('../config.php');
         	</h1>
       	</div>
   	</header>
-  	<div id="wrapper" style="width: 100vw; position: absolute; left: 0px;">
+  	<div id="pageWrapper">
     	<div id="page" class="site">
         	<div id="primary" class="content-area">
 	    		<main id="main" class="site-main today-container">
@@ -62,7 +62,9 @@ require_once('../config.php');
 										<li>make a short post (although there is technically no limit)</li>
 										<li>add posts to a local file and build an RSS feed (min 10, max 50 items)</li>
 										<li>each post has a page</li>
+										<li>posts can be edited by double-clicking them in the timeline</li>
 										<li>posts are sorted by timestamp along with those from any other subscribed feeds</li>
+										<li>local storage for remote posts and display limited to 100</li>
 										<li>an admin page for feed subscription & removal and other settings</li>
 									</ul>
 								</p>
@@ -75,8 +77,6 @@ require_once('../config.php');
 								<p>
 								<h3>To do:</h3>
 								<ul>
-									<li>pagination or limit the number of items shown (discussion has suggested 100)</li>
-									<li>potential for temporary storage of items (up to the above limit) so that they can be retrieved in the background and the timeline built from this storage rather than on the fly</li>
 									<li>think about how to create 'reply' functionality</li>
 								</ul>
 								</p>

@@ -4,7 +4,8 @@ session_start();
 
 define('APP_RAN', '');
 
-// Include config file
+// Include files
+
 require_once('config.php');
 require_once('Feeds.php');
 require_once('Parsedown.php');
@@ -26,11 +27,11 @@ if (isset($_GET['t'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>PHP-MST</title>
-	<link rel="stylesheet" href="../style.css" type="text/css" media="all">
+	<link rel="stylesheet" href="style.css" type="text/css" media="all">
 	<link rel="stylesheet" href="mst.css" type="text/css" media="all">
 </head>
 
-<body style="font-family: sans-serif; font-size: 16px;">
+<body>
 	<header id="masthead" class="site-header">
     	<div class="site-branding">
         	<h1 class="site-title">
@@ -42,7 +43,7 @@ if (isset($_GET['t'])) {
         	</h1>
       	</div>
   	</header>
-  	<div id="wrapper" style="width: 100vw; position: absolute; left: 0px;">
+  	<div id="pageWrapper">
     	<div id="page" class="site">
         	<div id="primary" class="content-area">
 	    		<main id="main" class="site-main today-container">
@@ -82,12 +83,11 @@ if (isset($_GET['t'])) {
 				echo '<div class="section">'.PHP_EOL;
 					echo '<div class="entry-content e-content">'.PHP_EOL;
 						echo '<div class="photo-box page"><div class="box-content"><div><span>'.$avatar.'</span></div></div></div>'.PHP_EOL;
-						echo '<div style="float: right; width: calc(100% - 30px); margin-block-start: 0em;">'.PHP_EOL;
-						echo '<p style="line-height: 0.9em; margin-block-start: 0em;">'.PHP_EOL;
+						echo '<div class="pagePost">'.PHP_EOL;
+						echo '<p class="pagePostTop">'.PHP_EOL;
 						echo $content.PHP_EOL;
-						echo '<span style="font-size: 0.6em; font-weight: bold; line-height: 0.6em; text-decoration: none; position: relative;
-    top: -10px;">'.date("d/m/Y H:i:s", (int)$post[0]).'</span></p></div>'.PHP_EOL;
-						echo '<div style="clear: both;"></div>'.PHP_EOL;
+						echo '<span class="pagePostBottom">'.date("d/m/Y H:i:s", (int)$post[0]).'</span></p></div>'.PHP_EOL;
+						echo '<div class="clear"></div>'.PHP_EOL;
 					echo '</div>'.PHP_EOL;
 				echo '</div>'.PHP_EOL;
 			echo '</article>'.PHP_EOL;

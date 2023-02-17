@@ -59,6 +59,10 @@ h2 {
 	cursor: pointer;
 }
 
+.clear {
+	clear: both;
+}
+
 
 /* Images */
 
@@ -154,6 +158,26 @@ body.login {
 	background-color: #ffffff;
 }
 
+a.admin {
+	float: left;
+	margin-top: 7px;
+	color: var(--light-links);
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.errWrapper {
+	width: 350px;
+	padding: 20px;
+	margin: 0px auto 25px;
+	position: relative;
+	top: 150px;
+	text-align: center;
+	color: #222;
+	border: 1px solid red;
+	border-radius: 8px;
+}
+
 .wrapper {
 	width: 350px;
 	padding: 20px;
@@ -242,6 +266,17 @@ body.login {
 	border-color: #204d74;
 }
 
+.cancel img {
+	position: absolute;
+    top: 22px;
+    right: calc(50vw - 195px);
+    font-size: 23px;
+    cursor: pointer;
+    color: #333;
+    z-index: 100;
+    width: 23px;
+    display: block;
+}
 
 /* Layout - header */
 
@@ -449,6 +484,61 @@ video {
 }
 
 
+/* Page & post */
+
+.pageWrapper {
+	width: 100vw;
+	position: absolute;
+	left: 0px;
+}
+
+.pagePost {
+	float: right;
+	width: calc(100% - 30px);
+	margin-block-start: 0em;
+	word-wrap: break-word;
+}
+
+.pagePostLink {
+	font-size: 0.9em;
+	line-height: 1em;
+	position: relative;
+	top: 4px;
+	margin-bottom: 10px;
+}
+
+.pagePostLink a {
+	text-decoration: none;
+}
+
+.pagePostTop {
+	line-height: 0.9em;
+	margin-block-start: 0em;
+	margin-block-end: 0em;
+}
+
+.pagePostBottom {
+	font-size: 0.6em;
+	font-weight: bold;
+	line-height: 0.6em;
+	text-decoration: none;
+	position: relative;
+    top: -10px;
+}
+
+.contentDiv {
+	margin-bottom: 10px;
+}
+
+a.cd {
+	font-size: 0.6em;
+	line-height: 0.6em;
+	text-decoration: none;
+	position: relative;
+	top: -10px;
+}
+
+
 /* Main form and controls */
 
 #content {	
@@ -641,6 +731,12 @@ input[type="checkbox"] {
 	color: white;
 	text-transform: uppercase;
 	font-family: sans-serif;
+}
+
+.box-content span a {
+	text-decoration: none;
+	color: white !important;
+	cursor: pointer;
 }
 
 object.avatar {
@@ -841,7 +937,11 @@ object.avatar {
 @media screen and (prefers-color-scheme: dark) {
 	.adminwrapper, .wrapper {
 		background-color: var(--grey-e) !important;	
-	} 
+	}
+	
+	a.admin {
+		color: var(--dark-links);	
+	}
 
 	body, .site-header, .entry-content, .entry-content p {
 		color: var(--grey-c) !important;
