@@ -62,8 +62,8 @@ if (file_exists($count)) {
 <?php if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) { ?>
     <a id="toggle" class="toggle" href="admin/">
     	<picture>
-            <source srcset="../images/admin_dark.png" media="(prefers-color-scheme: dark)">
-            <img src="../images/admin_light.png" />
+            <source srcset="images/admin_dark.png" media="(prefers-color-scheme: dark)">
+            <img src="images/admin_light.png" />
         </picture>
     </a>
 <?php } else { ?>
