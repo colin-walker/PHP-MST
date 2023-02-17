@@ -13,9 +13,11 @@ In Andy's words:
 PHP-MST includes authentication and the posting box only shows when logged in. It has the following functionality:
 
 - make a short post (although there is technically no limit)
-- add posts to a local file and build an RSS feed (currently limited to 10 items)
+- add posts to a local file and build an RSS feed (default is 20 items but can be set between 10 and 50)
+- posts can be edited by double-clicking them in the timeline
 - each post has a page
 - posts are sorted by timestamp along with those from any other subscribed feeds
+- local storage for remote posts and display limited to 100 
 - an admin page for feed subscription & removal
 
 PHP-MST uses Emanuil Rusev's [Parsedown](https://github.com/erusev/parsedown) library for Markdown and [my forked version](https://github.com/colin-walker/rss-php) of David Grudl's RSS-PHP.
@@ -39,9 +41,11 @@ Submitting this takes you to the admin page and deletes the setup file (we don't
 
 The admin page allows you to subscribe to RSS feeds and remove them. It is intended feeds will be from other 'My Status Tool' instances which support rssCloud notifications.
 
-You can also specify the 'refresh' time – how frequently PHP-MST checks for updates in minutes, and the number of items published to your local RSS feed (min 10, max 50).
+You can also specify the 'refresh' time – how frequently PHP-MST checks for updates in minutes, and the number of items published to your local RSS feed (min 10, max 50, default 20).
 
-The refresh time is stored in admin/refresh.txt and item count in admin/items.txt
+The refresh time is stored in admin/refresh.txt and item count in admin/items.txt – DO NOT DELETE these files
+
+There is also a link to 'clean' the remote items files (items.csv) to ensure it is kept to ~100 posts.
 
 ## Usage
 
@@ -57,8 +61,9 @@ The rssCloud server being used (Andrew Shell's at http://rpc.rsscloud.io/) requi
 
 You will, therefore, need to create a cron job to load pleaseNotify.php once a day to ensure notifications are received.
 
+It is advisable to create a cron job to periodically load clean.php to ensure the items.csv file is kept to ~100 posts.
+
 ## To do:
 
-- look at pagination or limit the total number of items (discussion has suggested 100)
-- potential for temporary storage of items (up to the above limit) so that they can be retrieved in the background and the timeline built from this storage rather than on the fly
+- tidy up some more inline CSS on the admin page (I'll get round to it eventually)
 - think about some kind of 'reply' mechanism
