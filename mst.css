@@ -67,6 +67,10 @@ nav.mst ul li a:hover {
 	font-size: 1.2em;
 }
 
+.contentDiv li {
+	line-height: 1.5em;
+}
+
 .rDiv {
 	text-align: center;
 	padding: 5px;
