@@ -94,6 +94,13 @@ nav.mst ul li a:hover {
 	width: 95%;
 }
 
+article {
+	border: 1px dotted #ccc;
+	border-radius: 8px;
+	padding: 0px 10px 5px 15px;
+	margin-bottom: 10px;
+}
+
 @media screen and (max-width: 767px) {
 	.box-content {
 		top: 0px !important;
@@ -121,5 +128,11 @@ nav.mst ul li a:hover {
 	
 	.mstedit {
 	    width: 93%;
+	}
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	article {
+		border: 1px dotted #555;
 	}
 }
