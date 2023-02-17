@@ -2,6 +2,10 @@
 
 **17th Feb 2023**
 
+Added `source:markdown` support to the RSS feed
+
+**17th Feb 2023**
+
 Big rewrite!
 
 We have agreed that MST apps should display up to 100 items to keep it manageable so PHP-MST now temporarily stores up to ~100 remote posts (items.csv).
