@@ -39,6 +39,8 @@ It doesn't auto-refresh but prompts when your subscribed feeds have been updated
     
 Submitting this takes you to the admin page and deletes the setup file (we don't want any accidents, do we.)
 
+**Please note:** example .htaccess files are included (Apache) or you can use your own, you need to ensure that the correct file is set as the DirectoryIndex in each folder.
+
 ## Admin page
 
 The admin page allows you to subscribe to RSS feeds and remove them. It is intended feeds will be from other 'My Status Tool' instances which support rssCloud notifications.
