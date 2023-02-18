@@ -30,7 +30,7 @@ if (file_exists($feeds)) {
 	
 		$url = 'http://'.$domain.$path;
 		$host = parse_url(BASE_URL, PHP_URL_HOST);
-		$homepath = '/php-mst/notify/';
+		$homepath = '/php-mst/notify/notify.php';
 	
 		$fields = array(
 		  'domain' => $host,
