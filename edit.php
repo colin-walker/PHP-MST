@@ -47,7 +47,8 @@ if (isset($_POST['link']) && isset($_POST['content'])) {
 if (isset($_GET['c'])) {
 	$content = $_GET['c'];
 	$link = $_GET['l'];
-	
+
+	echo '<br>';
 	echo '<form method="post" action="edit.php">';
 	echo '<input type="hidden" name="link" value="'.$link.'">';
 	echo '<textarea rows="5" name="content" id="editcontent" class="text mstedit">'.$content.'</textarea>';
