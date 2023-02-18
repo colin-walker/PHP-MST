@@ -13,7 +13,7 @@ function pleaseNotify($feed, $domain, $port, $path) {
     $fields = array(
       'domain' => $host,
       'port' => '443',
-      'path' => '/php-mst/notify/',
+      'path' => '/php-mst/notify/notify.php',
       'registerProcedure' => '',
       'protocol' => 'https-post',
       'url1' => $feed
