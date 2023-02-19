@@ -204,7 +204,7 @@ $items = file_get_contents('items.txt');
 		        <div class="clear"></div>
 		        <label for="avatar" style="padding-top: 9px;">Avatar:</label>
 		        <input class='form-control addfeed' name='avatar' type='text' style="margin-top: 5px;" value='<?php echo $avatar ?>' autocomplete="off">
-		        <a href="clean.php" class="admin" title="Ensures that the item storage has a maximum of 100 entries">Clean items</a>
+		        <a href="../clean.php" class="admin" title="Ensures that the item storage has a maximum of 100 entries">Clean items</a>
 		        <input type='submit' value='Update' style='margin-top: 7px; float: right;'><br/>
 		        
 		    </form>
