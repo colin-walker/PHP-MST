@@ -60,14 +60,14 @@ if (file_exists($count)) {
   	</header>
   	
 <?php if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) { ?>
-    <a id="toggle" class="toggle" href="admin/">
+    <a id="toggle" class="toggle" href="admin">
     	<picture>
             <source srcset="images/admin_dark.png" media="(prefers-color-scheme: dark)">
             <img src="images/admin_light.png" />
         </picture>
     </a>
 <?php } else { ?>
-	<a id="toggle" class="toggle" href="login/">
+	<a id="toggle" class="toggle" href="login">
 		<span class="login">ⓜ</a>
 	</a>
 <?php } ?>
@@ -79,7 +79,7 @@ if (file_exists($count)) {
 					<nav class="mst">
 			        	<ul>
 			        		<li><a href="<?php echo BASE_URL; ?>">Home</a></li>
-				        	<li><a href="<?php echo BASE_URL; ?>about/">About</a></li>
+				        	<li><a href="<?php echo BASE_URL; ?>about">About</a></li>
 			        		<li><a href="<?php echo BASE_URL; ?>feed.xml">Feed</a></li>
 			        	</ul>
 			        </nav>

@@ -123,7 +123,7 @@ article {
 	}
 	
 	.dict_del {
-		margin-top: 1px;
+		margin-top: 10px;
 	}
 
 	.addfeed {
@@ -132,6 +132,10 @@ article {
 	
 	.mstedit {
 	    width: 93%;
+	}
+	
+	.text {
+		width: 94%;	
 	}
 }
 

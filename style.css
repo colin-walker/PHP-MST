@@ -902,7 +902,7 @@ object.avatar {
 	}
 
 	#content, .newcontent, .text, .texttitles, .date {
-		width: 341px;
+		width: 94%;
 	}
 
 	.entry-content, .entry-content p, .replyto {
@@ -937,10 +937,6 @@ object.avatar {
 @media screen and (prefers-color-scheme: dark) {
 	.adminwrapper, .wrapper {
 		background-color: var(--grey-e) !important;	
-	}
-	
-	a.admin {
-		color: var(--dark-links);	
 	}
 
 	body, .site-header, .entry-content, .entry-content p {

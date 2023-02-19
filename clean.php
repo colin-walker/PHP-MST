@@ -32,6 +32,8 @@ foreach($rows as $row) {
 }
 fclose($f);
 
-header("Location: ".BASE_URL.'admin/');
-
 ?>
+
+<script>
+window.location.href = "<?php echo BASE_URL; ?>admin/";
+</script>
