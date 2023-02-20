@@ -18,6 +18,19 @@ Updated files:
 - /admin/admin.php
 - /admin/pleaseNotify.php
 
+**19th Feb**
+
+Some minor tweaks and fixes
+
+Updated files:
+
+- clean.php
+- edit.php
+- mst.css
+- mst.php
+- pleaseNotify.php
+- style.css
+
 **17th Feb 2023**
 
 Added `source:markdown` support to the RSS feed
