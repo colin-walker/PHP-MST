@@ -4,7 +4,9 @@
 
 Ensured notify path correctly calculated regardless of where the install is done (sub domain, root, sub directory etc.)
 
-When a feed is deleted the items from that feed are now also removed from the timeline.
+Existing items from a feed are now immediately added upon subscription rather than having to wait for a notification to be received.
+
+When a feed is deleted the items from that feed are also removed from the timeline.
 
 **17th Feb 2023**
 
