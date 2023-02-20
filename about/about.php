@@ -78,7 +78,6 @@ require_once('../config.php');
 								<h3>To do:</h3>
 								<ul>
 									<li>clean up some inline CSS in /admin</li>
-									<li>add function to remove items when unsubscribe from a feed</li>
 									<li>think about how to create 'reply' functionality</li>
 									<li>possible support for rss enclosures (podcast)</li>
 								</ul>

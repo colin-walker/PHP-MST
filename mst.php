@@ -147,7 +147,7 @@ foreach ($newposts as $p=>$row) {
 		} else {
 			$avatar = substr($row[5],0,1);
 		}
-		echo '<article class="h-entry hentry">'.PHP_EOL;
+		echo '<article class="h-entry hentry mst">'.PHP_EOL;
 			echo '<div class="section">'.PHP_EOL;
 				echo '<div class="entry-content e-content">'.PHP_EOL;
 					echo '<div class="photo-box"><div class="box-content"><div><span><a href="'.$row[6].'">' . $avatar . '</a></span></div></div></div>'.PHP_EOL;
