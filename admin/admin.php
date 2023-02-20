@@ -84,21 +84,67 @@ if (isset($_POST['add'])) {
 		
 		$xml = new SimpleXMLElement(trim($result), LIBXML_NOWARNING | LIBXML_NOERROR);
     	
-    	$rss = Feed::fromRss($xml);
-    	
-    	if (isset($rss->{'cloud'}['domain'])) {
-			$domain = (string)$rss->{'cloud'}['domain'];
-			$port = (string)$rss->{'cloud'}['port'];
-			$path = (string)$rss->{'cloud'}['path'];
-			$protocol = (string)$rss->{'cloud'}['protocol'];
-    		$result = pleaseNotify($url, $domain, $port, $path);			
-		} else {
-			$domain = $port = $path = $protocol = '';
+    	try {
+	    	$rss = Feed::fromRss($xml);
+	    	
+	    	if (isset($rss->{'cloud'}['domain'])) {
+				$domain = (string)$rss->{'cloud'}['domain'];
+				$port = (string)$rss->{'cloud'}['port'];
+				$path = (string)$rss->{'cloud'}['path'];
+				$protocol = (string)$rss->{'cloud'}['protocol'];
+	    		$result = pleaseNotify($url, $domain, $port, $path);			
+			} else {
+				$domain = $port = $path = $protocol = '';
+			}
+	    	
+	    	$f = fopen($feeds, 'a');
+	    	fputcsv($f, array($url, $domain, $port, $path, $protocol));
+	    	fclose($f);
+	    	
+	    	$title = $rss->title;
+			$link = $rss->link;
+		    if (isset($rss->image->url)) {
+		    	$image = $rss->image->url[0];
+		    } else {
+		    	$image = '';	
+		    }
+	    	
+	    	foreach ($rss->item as $item) {
+				$match = false;		
+				$itemLink = $item->link;
+				$itemTime = $item->timestamp;
+				
+				if (isset($item->title)) {
+					$itemTitle = $item->title;
+				} else {
+					$itemTitle = '';
+				}
+		
+				if (isset($item->{'content:encoded'})) {
+					$itemContent = $item->{'content:encoded'};
+				} else {
+					$itemContent = html_entity_decode($item->description);
+				}
+				
+				foreach ($rows as $row) {
+					if ($itemLink == $row[1]) {
+						$match = true;
+					}
+				}
+		
+				if (!$match) {
+					$addrows[] = array($itemTime, $itemLink, $itemTitle, $itemContent, $url, $title, $link, $image);
+				}
+			}
+    	}
+		catch (Exception $e) {
 		}
-    	
-    	$f = fopen($feeds, 'a');
-    	fputcsv($f, array($url, $domain, $port, $path, $protocol));
-    	fclose($f);
+	
+		$f = fopen('../items.csv', 'a');
+		foreach($addrows as $row) {
+			fputcsv($f, array($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6], $row[7]));
+		}
+		fclose($f);
     }
 }
 
