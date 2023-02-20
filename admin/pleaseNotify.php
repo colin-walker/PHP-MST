@@ -10,10 +10,14 @@ function pleaseNotify($feed, $domain, $port, $path) {
     $url = 'http://' . $domain . $path;
     $host = parse_url(BASE_URL,PHP_URL_HOST);
     
+    $admin = strpos($_SERVER['REQUEST_URI'], 'admin/');
+    $cut = substr($_SERVER['REQUEST_URI'],0,$admin);
+    $homepath = $cut.'notify/notify.php';
+    
     $fields = array(
       'domain' => $host,
       'port' => '443',
-      'path' => '/php-mst/notify/notify.php',
+      'path' => $homepath, //'/php-mst/notify/notify.php',
       'registerProcedure' => '',
       'protocol' => 'https-post',
       'url1' => $feed
