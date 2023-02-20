@@ -4,6 +4,8 @@
 
 Ensured notify path correctly calculated regardless of where the install is done (sub domain, root, sub directory etc.)
 
+When a feed is deleted the items from that feed are now also removed from the timeline.
+
 **17th Feb 2023**
 
 Added `source:markdown` support to the RSS feed
