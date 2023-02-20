@@ -23,6 +23,7 @@ require_once('pleaseNotify.php');
 $target_dir = dirname(__FILE__).'/';
 $session = dirname(__DIR__).'/session.php';
 $feeds = $target_dir.'feeds.csv';
+$items = dirname(__DIR__).'/items.csv';
 $avatar = AVATAR;
 
 if (isset($_POST['logout'])) {
@@ -41,6 +42,7 @@ if (isset($_POST['add'])) {
     $url = $_POST['newfeed'];
     $match = false;
     $rows = array();
+    $irows = array();
     
     if (file_exists($feeds)) {
 		$f = fopen($feeds, 'r');
@@ -104,10 +106,14 @@ if (isset($_POST['add'])) {
 
 if (isset($_POST['deletefeed'])) {
 	$feed = $_POST['f'];
+	
+	//delete feed
+	
 	$f = fopen($feeds, 'r');
     while (($row = fgetcsv($f)) !== false) {
 		$rows[] = $row;
 	}
+	$feedurl = $rows[$feed][0];
 	unset($rows[$feed]);
 	unlink($feeds);
 	
@@ -116,6 +122,27 @@ if (isset($_POST['deletefeed'])) {
 		fputcsv($f, $row);
 	}
 	fclose($f);
+	
+	// delete feed items
+	
+	$i = fopen($items, 'r');
+	while (($irow = fgetcsv($i)) !== false) {
+		$irows[] = $irow;
+	}
+	
+	foreach ($irows as $r=>$irow) {
+		if ($irow[4] == $feedurl) {
+			unset($irows[$r]);
+		}
+	}
+	unlink($items);
+	
+	$i = fopen($items, 'a');
+	foreach ($irows as $irow) {
+		fputcsv($i, $irow);
+	}
+	fclose($i);
+	
 }
 
 // set refresh
