@@ -8,9 +8,13 @@ Existing items from a feed are now immediately added upon subscription rather th
 
 When a feed is deleted the items from that feed are also removed from the timeline.
 
+Tidied up _some_ incline CSS in /admin
+
 Updated files:
 
+- mst.css
 - pleaseNotify.php
+- style.css
 - /admin/admin.php
 - /admin/pleaseNotify.php
 
