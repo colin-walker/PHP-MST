@@ -1,5 +1,9 @@
 # Changelog
 
+**20th Feb 2023**
+
+Ensured notify path correctly calculated regardless of where the install is done (sub domain, root, sub directory etc.)
+
 **17th Feb 2023**
 
 Added `source:markdown` support to the RSS feed
