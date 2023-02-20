@@ -8,6 +8,12 @@ Existing items from a feed are now immediately added upon subscription rather th
 
 When a feed is deleted the items from that feed are also removed from the timeline.
 
+Updated files:
+
+- pleaseNotify.php
+- /admin/admin.php
+- /admin/pleaseNotify.php
+
 **17th Feb 2023**
 
 Added `source:markdown` support to the RSS feed
