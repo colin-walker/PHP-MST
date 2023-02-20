@@ -265,7 +265,7 @@ $items = file_get_contents('items.txt');
 		     <form method='post'>
 		        <input type='hidden' name='add'>
 		        <input class='form-control addfeed' name='newfeed' type='text' placeholder='Add feed' autocomplete="off">
-		        <input type='submit' value='Add' style='float: right;'><br/>
+		        <input type='submit' value='Add'><br/>
 		    </form>
 		</div>
 		
@@ -278,7 +278,7 @@ $items = file_get_contents('items.txt');
 		        <label for="avatar" style="padding-top: 9px;">Avatar:</label>
 		        <input class='form-control addfeed' name='avatar' type='text' style="margin-top: 5px;" value='<?php echo $avatar ?>' autocomplete="off">
 		        <a href="../clean.php" class="admin" title="Ensures that the item storage has a maximum of 100 entries">Clean items</a>
-		        <input type='submit' value='Update' style='margin-top: 7px; float: right;'><br/>
+		        <input type='submit' value='Update' style='margin-top: 7px;'><br/>
 		        
 		    </form>
 		    <div class="clear"></div>
@@ -290,11 +290,11 @@ $items = file_get_contents('items.txt');
 
 	if (isset($update) && $update) {
 ?>
-		<dialog id="update" style="border-radius: 8px; background-color: #ccc;">
-		<p style="margin: 20px auto;">
+		<dialog id="update">
+		<p>
 		Update complete 👍
 		</p>
-		<button style="outline: none; float: right; border-radius: 5px; border: 1px solid #222222;" onclick="document.getElementById('update').close();">close</button>
+		<button onclick="document.getElementById('update').close();">close</button>
 		</dialog>
 		
 		<script>
@@ -306,33 +306,33 @@ $items = file_get_contents('items.txt');
 
 
 	if (file_exists($feeds)) {
-	$rows = array();
-	$f = fopen($feeds, 'r');
-    while (($row = fgetcsv($f)) !== false) {
-			$rows[] = $row;
-	}
-	fclose($f);
-	
-	foreach ($rows as $i=>$row) {
+		$rows = array();
+		$f = fopen($feeds, 'r');
+	    while (($row = fgetcsv($f)) !== false) {
+				$rows[] = $row;
+		}
+		fclose($f);
+		
+		foreach ($rows as $i=>$row) {
 			echo '<div style="margin: 10px 0px;">';
 			echo '<span style="float: left; width: calc(100% - 30px); overflow: hidden;">'.$row[0].'</span>';
 ?>
-			<form class="delicon" style="float: right; margin-right: 0px;" method="post">
+			<form class="delicon" method="post">
 				<input type="hidden" name="f" value="<?php echo $i; ?>">
 				<input type="hidden" name="deletefeed">
-				<input class="dict_del" onClick="javascript: return confirm('Are you sure?');" type="image" src="../images/red-cross.png" style="width: 16px; float: right;">
+				<input class="dict_del" onClick="javascript: return confirm('Are you sure?');" type="image" src="../images/red-cross.png">
 			</form>
 <?php			
 			echo '<div style="clear: both;"></div>';
 			echo '</div>';
-	}
+		}
 	}
 ?>
 		</div>
-		<div class="adminwrapper mst" style="background: transparent !important; border: none; margin: 0 auto;">
+		<div class="adminwrapper mst logout">
 			<form method='post'>
 		        <input type='hidden' name='logout'>
-		        <input type='submit' value='Log out' style='float: right;'>
+		        <input type='submit' name='submit' value='Log out' style='float: right;'>
 		    </form>
 		</div>   
 </body>

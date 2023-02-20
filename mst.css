@@ -47,6 +47,12 @@ nav.mst ul li a:hover {
 	color: #444;
 }
 
+.adminwrapper.logout {
+	background: transparent !important;
+	border: none;
+	margin: 0 auto;
+}
+
 .adminwrapper.mst span {
 	float: left;
 	min-width: 40%;
@@ -60,7 +66,14 @@ nav.mst ul li a:hover {
 }
 
 .dict_del {
-	margin-top: 1px;
+	margin-top: 10px;
+	width: 16px;
+	float: right;
+}
+
+.delicon {
+	float: right;
+	margin-right: 0px;
 }
 
 .contentDiv h1 {
@@ -105,6 +118,22 @@ article {
 	margin-bottom: 10px;
 }
 
+#update {
+	border-radius: 8px;
+	background-color: #ccc;
+}
+
+#update p {
+	margin: 20px auto;
+}
+
+#update button {
+	outline: none;
+	float: right;
+	border-radius: 5px;
+	border: 1px solid #222222;
+}
+
 @media screen and (max-width: 767px) {
 	.box-content {
 		top: 0px !important;
@@ -120,10 +149,6 @@ article {
 	
 	body {
 		max-width: 100vw;
-	}
-	
-	.dict_del {
-		margin-top: 10px;
 	}
 
 	.addfeed {
