@@ -577,6 +577,10 @@ input, textarea {
 	outline: none;
 }
 
+textarea::placeholder {
+  color: #bbbbbb;
+}
+
 input[type="submit"] {
 	color: #999;
 	border-radius: 40px;
