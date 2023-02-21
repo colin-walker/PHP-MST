@@ -34,7 +34,10 @@ if (isset($_POST['link']) && isset($_POST['content'])) {
 	if ($match) {
 		$f = fopen('posts.csv', 'w');
 		foreach ($rows as $row) {
-			fputcsv($f, array($row[0],$row[1]));
+			if (!isset($row[2])) {
+				$row[2] = '';
+			}
+			fputcsv($f, array($row[0],$row[1], $row[2]));
 		}
 		fclose($f);
 		
