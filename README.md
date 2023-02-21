@@ -59,6 +59,10 @@ The posting form will be visible when logged in allowing you to post new statuse
 
 When a subscribed feed notifies of an update a new file notify/count.txt is created. Using HTMX, count.php is reloaded at the refresh interval in /admin to check for the existence of count.txt – if it exists (or holds a value greater than zero) it will show a div prompting to load new items. Reloading the page will delete count.txt.
 
+**Replies**
+
+A reply icon will appear to the right of each post when logged in. Clicking this will set a hidden input value to the URL of the post you are replying to. This is then added to the RSS feed as an `mst:reply` item element so that the tool can pick out and display replies.
+
 ## Cron jobs
 
 The rssCloud server being used (Andrew Shell's at http://rpc.rsscloud.io/) requires you to resubscribe to feeds for notifications every 24 hours (the subscription is deleted after 25 hours.)
