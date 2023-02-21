@@ -1,5 +1,34 @@
 # Changelog
 
+**21st Feb 2023**
+
+Replies!
+
+An initial stab at reply functionality is now live using a new ['mst' namespace](https://github.com/colin-walker/mst-namespace) to provide a `<mst:reply>` item level element which contains the URL of the item being replied to.
+
+Click the reply icon next to any post to set a hidden input field which then gets added to the RSS feed for that post.
+
+mst.php and page.php then check for the presence of this additional element to display replies.
+
+There is also a little more tidying up.
+
+Added files:
+
+- /images/doreply.png
+- /images/doreplydark.png
+- /images/hascomment.png
+- /images/hascommentdark.png
+
+Updated Files:
+
+- mst.php
+- page.php
+- post.php
+- rss.php
+- /about/about.php
+- /admin/admin.php
+- 
+
 **20th Feb 2023**
 
 Ensured notify path correctly calculated regardless of where the install is done (sub domain, root, sub directory etc.)
