@@ -26,6 +26,11 @@ file_exists($session) ? $auth = file_get_contents($session) : $auth = 0;
 if ( isset($_POST['dopost']) && hash_equals($_POST['randcheck'], ''.$_SESSION['rand']) ) {
 	if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
 		$content = $_POST['content'];
+		if (!empty($_POST['inreplyto'])) {
+			$irt = $_POST['inreplyto'];
+		} else {
+			$irt = '';
+		}
 		$posts = array();
 		if (file_exists($file)) {
 			$f = fopen($file, 'r');
@@ -45,7 +50,7 @@ if ( isset($_POST['dopost']) && hash_equals($_POST['randcheck'], ''.$_SESSION['r
 		}
 		
 		$time = time();
-		$new = [$time, $content];
+		$new = [$time, $content, $irt];
 		array_push($posts, $new);
 
 		$f = fopen($file, 'a');

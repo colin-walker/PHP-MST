@@ -125,6 +125,12 @@ if (isset($_POST['add'])) {
 				} else {
 					$itemContent = html_entity_decode($item->description);
 				}
+			
+				if (isset($item->{'mst:reply'})) {
+					$irt = $item->{'mst:reply'};
+				} else {
+					$irt = '';
+				}
 				
 				foreach ($rows as $row) {
 					if ($itemLink == $row[1]) {
@@ -133,7 +139,7 @@ if (isset($_POST['add'])) {
 				}
 		
 				if (!$match) {
-					$addrows[] = array($itemTime, $itemLink, $itemTitle, $itemContent, $url, $title, $link, $image);
+					$addrows[] = array($itemTime, $itemLink, $itemTitle, $itemContent, $url, $title, $link, $image, $irt);
 				}
 			}
     	}
@@ -142,7 +148,7 @@ if (isset($_POST['add'])) {
 	
 		$f = fopen('../items.csv', 'a');
 		foreach($addrows as $row) {
-			fputcsv($f, array($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6], $row[7]));
+			fputcsv($f, array($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6], $row[7], $row[8]));
 		}
 		fclose($f);
     }

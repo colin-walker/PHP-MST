@@ -65,6 +65,7 @@ require_once('../config.php');
 										<li>posts can be edited by double-clicking them in the timeline</li>
 										<li>posts are sorted by timestamp along with those from any other subscribed feeds</li>
 										<li>local storage for remote posts and display limited to 100</li>
+										<li>initial reply functionality using a new <a href="https://php-mst.colinwalker.blog/">'mst' namespace</a></li>
 										<li>an admin page for feed subscription & removal and other settings</li>
 									</ul>
 								</p>
@@ -78,7 +79,6 @@ require_once('../config.php');
 								<h3>To do:</h3>
 								<ul>
 									<li>clean up some inline CSS in /admin</li>
-									<li>think about how to create 'reply' functionality</li>
 									<li>possible support for rss enclosures (podcast)</li>
 								</ul>
 								</p>

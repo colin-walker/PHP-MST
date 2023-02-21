@@ -95,6 +95,7 @@ if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
 ?>
 						<input type="hidden" value="<?php echo $rand; ?>" name="randcheck" />
 						<input type="hidden" id="dopost" name="dopost" value="true">
+						<input type="hidden" id="inreplyto" name="inreplyto" value="">
         				<textarea rows="5" id="content" name="content" class="text" placeholder="Write..." required></textarea>
         				<input type="submit" name="submit" id="submit" value="Post"><span style="float: left; font-size: 75%;">
 					</form>
@@ -110,6 +111,11 @@ $rows = array();
 $h = fopen('posts.csv', 'r');
 while (($row = fgetcsv($h)) !== false) {
 	$post_title = '';
+	if (isset($row[2]) && !empty($row[2])) {
+		$irt = $row[2];
+	} else {
+		$irt = '';
+	}
 	
 	$rows[] = array(
 		$row[0],
@@ -118,7 +124,9 @@ while (($row = fgetcsv($h)) !== false) {
 		$row[1],
 		BASE_URL.'feed.xml',
 		NAME,
-		BASE_URL,AVATAR
+		BASE_URL,
+		AVATAR,
+		$irt
 	);
 }
 fclose($h);
@@ -140,13 +148,14 @@ foreach ($rows as $post) {
 
 foreach ($newposts as $p=>$row) {
 	if ($p < 100) {
-							$Parsedown = new Parsedown;
-					$content = $Parsedown->text($row[3]);
+		$Parsedown = new Parsedown;
+		$content = $Parsedown->text($row[3]);
 		if (isset($row[7]) && $row[7] != '') {
 			$avatar = '<img src="'.$row[7].'" />';
 		} else {
 			$avatar = substr($row[5],0,1);
 		}
+		
 		echo '<article class="h-entry hentry mst">'.PHP_EOL;
 			echo '<div class="section">'.PHP_EOL;
 				echo '<div class="entry-content e-content">'.PHP_EOL;
@@ -162,7 +171,35 @@ foreach ($newposts as $p=>$row) {
 					}
 					
 					echo '<div class="contentDiv" '.$edit.'>'.$content.'</div>'.PHP_EOL;
-					echo '<a class="cd" href="'.$row[1].'">'.date(DATEFORMAT." H:i:s", (int)$row[0]).'</a></div></div>'.PHP_EOL;
+					echo '<a class="cd" href="'.$row[1].'">'.date(DATEFORMAT." H:i:s", (int)$row[0]).'</a>'.PHP_EOL;
+					
+					if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
+						echo '<a title="Reply to this post" style="float:right; margin-left: 15px;" onclick="setInReplyTo(\''.$row[1].'\');"><picture><source srcset="../images/doreplydark.png" media="(prefers-color-scheme: dark)"><img src="images/doreply.png" style="width: 14px; position: relative; bottom: 7px;" /></picture></a>'.PHP_EOL;
+					}
+					
+					$replies = false;
+					
+					$h = fopen('posts.csv', 'r');
+					while (($prows = fgetcsv($h)) !== false) {
+						if (isset($prows[2]) && $prows[2] == $row[1]) {
+							$replies = true;
+						}
+					}
+					fclose($h);
+					
+					$i = fopen('items.csv', 'r');
+					while (($irows = fgetcsv($i)) !== false) {
+						if (isset($irows[8]) && $irows[8] == $row[1]) {
+							$replies = true;
+						}
+					}
+					fclose($i);
+					
+					if ($replies) {
+						echo '<a title="See replies" href="'.$row[1].'"><picture style="float: right;"><source srcset="../images/hascommentdark.png" media="(prefers-color-scheme: dark)"><img src="images/hascomment.png" class="noradius" style="height: 11px !important; width: 17px; position: relative; bottom: 8px; overflow: auto;" /></picture></a>';	
+					}
+					
+					echo '</div></div>'.PHP_EOL;
 					echo '<div class="clear"></div>'.PHP_EOL;
 				echo '</div>'.PHP_EOL;
 			echo '</div>'.PHP_EOL;
@@ -177,5 +214,17 @@ foreach ($newposts as $p=>$row) {
 	    	</div>
 	    </div>
 	</div>
+	
+	<script>
+	function setInReplyTo(link) {
+		var irt = document.getElementById('inreplyto');
+		irt.value = link;
+		document.getElementById('content').setSelectionRange(0, 0);
+        document.getElementById('content').focus();
+        rect = document.getElementById('content').getBoundingClientRect();
+        recttop = rect.top;
+	    window.scrollTo(0, recttop);
+	}
+	</script>
 </body>
 </html>

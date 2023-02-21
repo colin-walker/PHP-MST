@@ -22,7 +22,7 @@ if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
 			
 	fwrite($xmlfile, '<?xml version="1.0" standalone="yes" ?>'.PHP_EOL);
 	fwrite($xmlfile, '<?xml-stylesheet href="'.BASE_URL.'feed.xsl" type="text/xsl" ?>'.PHP_EOL);
-	fwrite($xmlfile, '<rss xmlns:source="http://source.scripting.com/" version="2.0">'.PHP_EOL);
+	fwrite($xmlfile, '<rss xmlns:source="http://source.scripting.com/" xmlns:now="https://php-mst.colinwalker.blog/" version="2.0">'.PHP_EOL);
 	fwrite($xmlfile, '<channel>'.PHP_EOL);
 	fwrite($xmlfile, '<title>'.NAME.'</title>'.PHP_EOL);
 	fwrite($xmlfile, '<description>Statuses from ' . NAME . ' - PHP-MST</description>'.PHP_EOL);
@@ -68,6 +68,11 @@ if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
 		$content = $Parsedown->text($post[1]);
 		fwrite($xmlfile, '<description><![CDATA[' . $content . ']]></description>'.PHP_EOL);
 		fwrite($xmlfile, '<source:markdown>' . $md_content . '</source:markdown>' . PHP_EOL);
+		
+		if (isset($post[2]) && !empty($post[2])) {
+			fwrite($xmlfile, '<mst:reply>'.$post[2].'</mst:reply>'.PHP_EOL);
+		}
+		
 		fwrite($xmlfile, '</item>'.PHP_EOL);
 	}
 	

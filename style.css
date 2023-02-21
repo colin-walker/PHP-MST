@@ -507,6 +507,14 @@ video {
 	margin-bottom: 10px;
 }
 
+.pagePostLink.page {
+	font-size: 0.9em;
+	line-height: 1em;
+	position: relative;
+	top: 0px;
+	margin-bottom: 10px;
+}
+
 .pagePostLink a {
 	text-decoration: none;
 }
