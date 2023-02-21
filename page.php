@@ -37,7 +37,7 @@ if (isset($_GET['t'])) {
         	<h1 class="site-title">
         		<a href="<?php echo BASE_URL; ?>" rel="home">
 	          		<span class="p-name">
-	          			PHP-MST
+	          			<?php echo NAME; ?>
 	          		</span>
           		</a>
         	</h1>
