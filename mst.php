@@ -164,13 +164,19 @@ foreach ($newposts as $p=>$row) {
 					echo '<div class="pagePostTop">'.PHP_EOL;
 					echo '<span class="pagePostLink"><a href="'.$row[6].'">'.$row[5].'</a></span><br>'.PHP_EOL;
 					
+					if (!empty($row[2])) {
+						$title = '<h2 class="postTitle">'.$row[2].'</h2>';
+					} else {
+						$title = '';
+					}
+					
 					if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth && strpos($row[1], BASE_URL) === 0) {
 						$edit = 'hx-target="this" hx-trigger="dblclick" hx-get="edit.php?c='.urlencode($row[3]).'&l='.urlencode($row[1]).'"';
 					} else {
 						$edit = '';
 					}
 					
-					echo '<div class="contentDiv" '.$edit.'>'.$content.'</div>'.PHP_EOL;
+					echo '<div class="contentDiv" '.$edit.'>'.$title.$content.'</div>'.PHP_EOL;
 					echo '<a class="cd" href="'.$row[1].'">'.date(DATEFORMAT." H:i:s", (int)$row[0]).'</a>'.PHP_EOL;
 					
 					if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
@@ -196,7 +202,7 @@ foreach ($newposts as $p=>$row) {
 					fclose($i);
 					
 					if ($replies) {
-						echo '<a title="See replies" href="'.$row[1].'"><picture style="float: right;"><source srcset="../images/hascommentdark.png" media="(prefers-color-scheme: dark)"><img src="images/hascomment.png" class="noradius" style="height: 11px !important; width: 17px; position: relative; bottom: 8px; overflow: auto;" /></picture></a>';	
+						echo '<a href="'.$row[1].'" title="See replies" ><picture style="float: right;"><source srcset="../images/hascommentdark.png" media="(prefers-color-scheme: dark)"><img src="images/hascomment.png" class="noradius" style="height: 11px !important; width: 17px; position: relative; bottom: 8px; overflow: auto;" /></picture></a>';	
 					}
 					
 					echo '</div></div>'.PHP_EOL;
@@ -216,16 +222,16 @@ foreach ($newposts as $p=>$row) {
 	</div>
 	
 	<script>
-	function setInReplyTo(link, name) {
-		var irt = document.getElementById('inreplyto');
-		irt.value = link;
-		document.getElementById('content').placeholder = 'Reply to '+ name;
-		document.getElementById('content').setSelectionRange(0, 0);
-        document.getElementById('content').focus();
-        rect = document.getElementById('content').getBoundingClientRect();
-        recttop = rect.top;
-	    window.scrollTo(0, recttop-75);
-	}
+		function setInReplyTo(link, name) {
+			var irt = document.getElementById('inreplyto');
+			irt.value = link;
+			document.getElementById('content').placeholder = 'Reply to '+ name;
+			document.getElementById('content').setSelectionRange(0, 0);
+	        document.getElementById('content').focus();
+	        rect = document.getElementById('content').getBoundingClientRect();
+	        recttop = rect.top;
+		    window.scrollTo(0, recttop-75);
+		}
 	</script>
 </body>
 </html>
