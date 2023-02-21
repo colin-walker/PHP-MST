@@ -166,6 +166,13 @@ a.admin {
 	font-weight: bold;
 }
 
+a.back {
+	margin-top: 7px;
+	color: var(--light-links);
+	text-decoration: none;
+	font-weight: bold;
+}
+
 .errWrapper {
 	width: 350px;
 	padding: 20px;
@@ -580,6 +587,7 @@ input[type="submit"] {
 	font-size: 12px;
 	font-family: sans-serif;
 	float: right;
+	margin-left: 15px;
 }
 
 input[type="submit"]:hover {
@@ -1049,6 +1057,10 @@ object.avatar {
 	
 	#login_form label, #setup_form label, #admin_form label, #password_form label {
 		color: var(--grey-3);
+	}
+	
+	a.back {
+		color: var(--dark-links);	
 	}
 
 }

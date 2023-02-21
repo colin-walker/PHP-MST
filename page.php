@@ -55,7 +55,11 @@ if (isset($_GET['t'])) {
 		        		<li><a href="<?php echo BASE_URL; ?>feed.xml">Feed</a></li>
 		        	</ul>
 		        </nav>
+		        <p>
+		        <a class="back" href="<?php echo BASE_URL; ?>">&lt;&lt;</a>
+		        </p>
 		        <br>
+		        
 <?php
 	if (file_exists($file)) {
 		$f = fopen($file, 'r');
