@@ -2,6 +2,16 @@
 
 **21st Feb 2023**
 
+Some additional styling, fixes & enhancements for replies
+
+Updated Files:
+
+- edit.php
+- mst.php
+- style.css
+
+**21st Feb 2023**
+
 Replies!
 
 An initial stab at reply functionality is now live using a new ['mst' namespace](https://github.com/colin-walker/mst-namespace) to provide a `<mst:reply>` item level element which contains the URL of the item being replied to.
@@ -27,7 +37,6 @@ Updated Files:
 - rss.php
 - /about/about.php
 - /admin/admin.php
-- 
 
 **20th Feb 2023**
 
