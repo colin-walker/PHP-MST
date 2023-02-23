@@ -30,6 +30,8 @@ function pleaseNotify($feed, $domain, $port, $path) {
         curl_setopt($ch,CURLOPT_POST, true);
         curl_setopt($ch,CURLOPT_POSTFIELDS, $postdata);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch,CURLOPT_FOLLOWLOCATION, TRUE);
+		curl_setopt($ch, CURLOPT_POSTREDIR, CURL_REDIR_POST_ALL);
         $httpReturnCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $result = curl_exec($ch);
         if ($result === false) {

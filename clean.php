@@ -17,18 +17,21 @@ while (($row = fgetcsv($f)) !== false) {
 
 $i = 0;
 
-do {
+while (count($rows) > 100) {
 	unset($rows[$i]);
 	$i++;
-	echo count($rows).'<br>';
-} while (count($rows) > 100);
+	//echo count($rows).'<br>';
+}
 
 $f = fopen('items.csv', 'w');
 foreach($rows as $row) {
 	if(!isset($row[7])) {
 		$row[7] = '';
 	}
-	fputcsv($f, array($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6],$row[7]));
+	if(!isset($row[8])) {
+		$row[8] = '';
+	}
+	fputcsv($f, $row);
 }
 fclose($f);
 
