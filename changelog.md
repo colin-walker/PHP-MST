@@ -1,5 +1,16 @@
 # Changelog
 
+**23rd Feb 2023**
+
+A few minor tweaks.
+
+Updates files:
+
+- clean.php
+- ping.php
+- style.css
+- /admin/pleaseNotify.php
+
 **21st Feb 2023**
 
 Some additional styling, fixes & enhancements for replies
