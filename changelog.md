@@ -1,5 +1,14 @@
 # Changelog
 
+**2nd March 2023**
+
+Changed pleaseNotify url parameter from 'url1' to 'url'
+
+Updated files:
+
+- pleaseNotify.php
+- /admin/pleaseNotify.php
+
 **23rd Feb 2023**
 
 A few minor tweaks.
