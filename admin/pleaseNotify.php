@@ -20,7 +20,7 @@ function pleaseNotify($feed, $domain, $port, $path) {
       'path' => $homepath, //'/php-mst/notify/notify.php',
       'registerProcedure' => '',
       'protocol' => 'https-post',
-      'url1' => $feed
+      'url' => $feed
     );
     
     $postdata = http_build_query($fields);

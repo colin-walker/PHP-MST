@@ -42,7 +42,7 @@ if (file_exists($feeds)) {
 		  'path' => $homepath,
 		  'registerProcedure' => '',
 		  'protocol' => 'https-post',
-		  'url1' => $feed
+		  'url' => $feed
 		);
 		
 		$postdata = http_build_query($fields);
