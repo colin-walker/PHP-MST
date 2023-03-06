@@ -108,25 +108,27 @@ if (($_SERVER["REQUEST_METHOD"] === "POST" || isset($_POST)) && isset($_POST["ur
 				$irt = '';
 			}
 			
-			foreach ($rows as $row) {
+			foreach ($rows as $i=>$row) {
 				if ($itemLink == $row[1]) {
 					$match = true;
+					if ($itemContent != $row[3]) {
+						$rows[$i][3] = $itemContent;
+					}
 				}
 			}
 	
 			if (!$match) {
-				$addrows[] = array($itemTime, $itemLink, $itemTitle, $itemContent, $url, $title, $link, $image, $irt);
+				$rows[] = array($itemTime, $itemLink, $itemTitle, $itemContent, $url, $title, $link, $image, $irt);
 			}
 		}
 	}
 	catch (Exception $e) {
 	}
-	
-	$f = fopen('../items.csv', 'a');
-	foreach($addrows as $row) {
-		fputcsv($f, array($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6], $row[7], $row[8]));
+			
+	$f = fopen('../items.csv', 'w');
+	foreach($rows as $row) {
+		fputcsv($f, $row);
 	}
-	fclose($f);
 }
 
 ?>

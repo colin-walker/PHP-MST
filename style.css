@@ -737,7 +737,7 @@ input[type="checkbox"] {
 
 .box-content {
 	position:  absolute;
-	top: 1px;
+	top: 0px;
 	left: 0;
 	bottom: 0;
 	right: 0;
