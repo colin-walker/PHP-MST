@@ -1,5 +1,16 @@
 # Changelog
 
+**6th March 2023**
+
+Changes to subscribed items are now reflected in the timeline.
+
+Also made a slight change to CSS.
+
+Updated files:
+
+- style.css
+- /notify/index.php
+
 **2nd March 2023**
 
 Changed pleaseNotify url parameter from 'url1' to 'url'
