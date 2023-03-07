@@ -180,7 +180,7 @@ foreach ($newposts as $p=>$row) {
 					echo '<a class="cd" href="'.$row[1].'">'.date(DATEFORMAT." H:i:s", (int)$row[0]).'</a>'.PHP_EOL;
 					
 					if (isset($_SESSION['mstauth']) && $_SESSION['mstauth'] == $auth) {
-						echo '<a title="Reply to this post" style="float:right; margin-left: 15px;" onclick="setInReplyTo(\''.$row[1].'\',\''.$row[5].'\');"><picture><source srcset="images/doreplydark.png" media="(prefers-color-scheme: dark)"><img src="images/doreply.png" style="width: 14px; position: relative; bottom: 7px;" /></picture></a>'.PHP_EOL;
+						echo '<a title="Reply to this post" style="float:right; margin-left: 15px;" onclick="setInReplyTo(\''.$row[1].'\',\''.addslashes($row[5]).'\');"><picture><source srcset="images/doreplydark.png" media="(prefers-color-scheme: dark)"><img src="images/doreply.png" style="width: 14px; position: relative; bottom: 7px;" /></picture></a>'.PHP_EOL;
 					}
 					
 					$replies = false;
