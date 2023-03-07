@@ -1,5 +1,13 @@
 # Changelog
 
+**7th March 2023**
+
+Forgot to account for special characters in feed names.
+
+Updated files:
+
+- mst.php
+
 **6th March 2023**
 
 Changes to subscribed items are now reflected in the timeline.
